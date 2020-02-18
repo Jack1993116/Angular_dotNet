@@ -31,4 +31,15 @@ app-grid-columns-picker {
     .mat-select-arrow-wrapper {
         display: none;
     }
+
+    @media (max-width: 400px) {
+        .table-settings-button button {
+            width: 50px;
+            border-radius: 50%;
+            padding: 0 14px;            
+        }
+        .resSpan {
+            display: none;
+        }
+    }
 }

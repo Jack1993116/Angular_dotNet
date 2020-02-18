@@ -16,4 +16,15 @@ app-add-order {
         color: white !important;
         font-size: 21px !important;
     }
+
+    @media (max-width: 400px) {
+        .addOrderBtn {
+            width: 50px;
+            border-radius: 50%;
+            padding: 0 10px;            
+        }
+        .resSpan {
+            display: none;
+        }
+    }
 }

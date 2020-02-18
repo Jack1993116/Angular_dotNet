@@ -1,7 +1,7 @@
 <div class="table-settings-button pr-24">
     <button mat-icon-button (click)=select.open()>        
         <mat-icon class="accent-fg">settings</mat-icon>
-        {{ 'NAV.SETTINGS' | translate }}
+        <span class="resSpan">{{ 'NAV.SETTINGS' | translate }}</span>
         <mat-select #select
             panelClass="panel" disableOptionCentering>
             <div *ngFor="let column of columnsList">

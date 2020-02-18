@@ -55,16 +55,24 @@ toolbar {
     }
 
     .user-button span {
-        color: black;
+        color: #00102b;
         font-weight: bold;
     }
 
     .user-button span .greySpan {
-        color: grey;
+        color: #9a9a9a;
     }
 
     .smallImg {
         width: 340px;
+    }
+
+    .smallImg span {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+
+    .avatarBtn span {
+        font-family: Roboto, "Helvetica Neue", sans-serif;
     }
 
     .avatarBtn {
@@ -84,6 +92,10 @@ toolbar {
 
     .smallImg .mat-icon {
         color: grey;
+    }
+
+    .avatarBtn .mat-icon {
+        color: #00102b;
     }
 
     .navbar-toggle-button {
