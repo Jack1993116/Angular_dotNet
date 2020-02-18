@@ -1,0 +1,32 @@
+<div class = "paginatorDiv">
+    <div class = "paginatorLeftSubDiv">
+        <span class="paginatorGreyLabel">Showing:</span>
+        <span class="paginatorOrangeLabel">&nbsp;{{pagesize}} {{tableTitle}}</span>
+    </div>
+    <div>
+        <button class="pageBtn"  (click)="goFirstPage()" [disabled]="!isHasPrevPage">
+            <!-- <mat-icon>add_circle_outline</mat-icon> -->
+            <img src="assets/icons/firstBtn.png" alt="filter">
+        </button>
+        <button class="pageBtn"  (click)="goPrevPage()" [disabled]="!isHasPrevPage">
+            <!-- <mat-icon>keyboard_arrow_left</mat-icon> -->
+            <img src="assets/icons/prevBtn.png" alt="filter">
+        </button>
+        <div style="display:inline" *ngFor="let page of pagecount; let i = index ">
+            <button class="pageBtn" *ngIf="(firstBtnIndex <= i) && ( i <= lastBtnIndex)" [ngClass]="{activePage: i === nowpageindex}" (click)="updatePage(i)">{{page}}</button>
+        </div>
+        
+        <button class="pageBtn" (click)="goNextPage()" [disabled]="!isHasNextPage">
+            <!-- <mat-icon>keyboard_arrow_right</mat-icon> -->
+            <img src="assets/icons/nextBtn.png" alt="filter">
+        </button>  
+        <button class="pageBtn" (click)="goLastPage()" [disabled]="!isHasNextPage">
+            <!-- <mat-icon>add_circle_outline</mat-icon> -->
+            <img src="assets/icons/lastBtn.png" alt="filter">
+        </button>         
+    </div>
+    <div class="paginatorRightSubDiv">
+        <span class="paginatorGreyLabel">Total Orders:</span>
+        <span class="paginatorOrangeLabel">&nbsp;{{pagelength}} {{tableTitle}}</span>
+    </div>
+</div>

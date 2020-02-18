@@ -1,0 +1,54 @@
+@import "src/@fuse/scss/fuse";
+
+.lines-dialog {
+    
+    min-width: 22vw;
+    
+    @include media-breakpoint('xs') {
+        width: 100%;
+    }
+
+    mat-toolbar-row {
+        place-content: center space-between;
+        background: #de990f;
+    }
+
+    .space-between {
+        place-content: space-between;
+    }
+
+    .flex-end {
+        place-content: flex-end;
+    }
+    
+    .mat-dialog-container {
+        padding: 0;
+    }
+
+    .dialog-content-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .mat-checkbox {
+        padding: 0 15px;
+    }
+
+    tr.mat-row {
+
+        td {
+            
+            white-space: nowrap;
+
+            .mat-form-field-wrapper {
+
+                .mat-form-field-infix {
+
+                    border: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+}

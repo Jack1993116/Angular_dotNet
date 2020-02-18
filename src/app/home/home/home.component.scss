@@ -1,0 +1,117 @@
+@import "src/@fuse/scss/fuse";
+
+app-home {
+
+    .content {
+
+        // background-image: url("assets/images/backgrounds/businessman-3213659_1920.jpg");
+        // background-image: url("assets/images/backgrounds/city-3213676_1920.jpg");
+        // background-image: url("assets/images/backgrounds/industry-4-2741774_1920.png");
+        // background-image: url("assets/images/backgrounds/industry-2630319_1920.jpg");
+        // background-image: url("assets/images/backgrounds/industry-2633878_1920.jpg");
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        // background-position: center;
+        // background: #1A237E;
+        // background: linear-gradient(to right, #0E2A3B 0%, #34306B 100%);
+        
+
+        .hero-text {
+
+            width: 80%;
+
+            .hero-icon {
+                position: absolute;
+                top: -64px;
+                left: 0px;
+                opacity: 0.04;
+                font-size: 512px !important;
+                width: 512px !important;
+                height: 512px !important;
+            }
+
+            h1 {
+
+                color: gainsboro;
+                font-size: 9vh;
+                font-weight: bold;
+                letter-spacing: 0.01em;
+                text-align: center;
+                margin-top: 0;
+                margin-bottom: 16px;
+
+                @include media-breakpoint('xs') {
+                    font-size: 24px;
+                }
+
+            }
+
+            h3 {
+
+                color: white;
+                text-align: center;
+                font-weight: bold;
+                letter-spacing: 0.03em;
+                margin: 0;
+                position: absolute;
+                bottom: 8vh;
+                font-size: 5.6vh;
+                left: 10%;
+                right: 10%;
+
+                @include media-breakpoint('xs') {
+                    font-size: 14px;
+                }
+                
+            }
+        }
+
+        .cards {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .card {
+                display: flex;
+                align-items: flex-start;
+                padding: 24px 24px 48px 24px;
+                margin-bottom: 96px;
+
+                .card-preview {
+                    display: flex;
+                    min-width: 320px;
+                }
+
+                .card-source {
+                    display: none;
+                }
+            }
+        }
+
+        &.source {
+
+            .cards {
+                flex-direction: column;
+
+                .card {
+                    width: 100%;
+                    margin-bottom: 24px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+                    .card-source {
+                        background: #263238;
+                        display: flex !important;
+                        flex: 1;
+                        max-height: 400px;
+                        min-width: 400px;
+                        margin-left: 24px;
+                        overflow: auto;
+                        -webkit-overflow-scrolling: touch;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+@import "src/@fuse/scss/fuse";
+@import "../shared";
+
+app-not-found {
+
+    #error-404 {
+        @extend %error-shared;
+    }
+}

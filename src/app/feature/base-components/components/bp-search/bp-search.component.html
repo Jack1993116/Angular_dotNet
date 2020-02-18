@@ -1,0 +1,29 @@
+<div [formGroup]="form" matAutocompleteOrigin #origin="matAutocompleteOrigin" fxLayout="row">
+
+    <mat-form-field [color]="'accent'" fxFlex="50" appearance="standard">     
+        <mat-label>{{ 'DOCS.bpCode' | translate }}</mat-label>
+        <div fxLayout="row">
+            <input matInput formControlName="bpCode" [matAutocomplete]="autoBPCode"
+                [matAutocompleteConnectedTo]="origin" [disabled]="!form.get('erpCompany').value">
+            <mat-autocomplete #autoBPCode="matAutocomplete" (optionSelected)="selectBp($event)">
+                <mat-option class="search-result" *ngFor="let bp of bps$ | async"
+                    [value]="bp">
+                    {{ bp.bpCode }} - {{ bp.mainErpBpCode }} - {{ bp.bpName }}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+        <mat-icon matSuffix>contacts</mat-icon>
+        <mat-error>{{ 'DOCS.bpCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [color]="'accent'" fxFlex="50" appearance="standard">
+        <mat-label>{{ 'DOCS.bpName' | translate }}</mat-label>
+        <div fxLayout="row">
+            <input matInput formControlName="bpName" [matAutocomplete]="autoBPCode"
+                [matAutocompleteConnectedTo]="origin" [disabled]="!form.get('erpCompany').value">
+        </div>
+        <mat-icon matSuffix>face</mat-icon>
+        <mat-error>{{ 'DOCS.bpName' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+    </mat-form-field>
+
+</div>

@@ -1,0 +1,19 @@
+<div fxLayout="column">
+
+    <div fxLayout="row" class="header-row">
+
+        <app-header [title]="'IMD_CREATE'" fxFlex="35"
+            [icon]="'select_all'" fxLayout="row"></app-header>
+        
+    </div>
+
+    <div class="save-spinner" *ngIf="isSaving">
+        <mat-spinner *ngIf="isSaving"></mat-spinner>
+    </div>
+
+    <app-item-master-data-detail 
+        [item]="entity" (saveEvent)="save($event)">
+    </app-item-master-data-detail>
+    
+</div>
+            

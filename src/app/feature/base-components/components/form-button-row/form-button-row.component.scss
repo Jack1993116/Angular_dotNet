@@ -1,0 +1,15 @@
+@import "src/@fuse/scss/fuse";
+
+app-form-button-row {
+
+    background: #f5f6fa;
+
+    .chip-container {
+        padding: 1.5vh 0;
+    }
+
+    .button-row {
+        justify-content: flex-end;
+    }
+    
+}

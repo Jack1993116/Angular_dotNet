@@ -1,0 +1,8 @@
+<mat-form-field appearance="standard">
+    <mat-select formControlName="logisticSiteCode">
+        <mat-option *ngFor="let site of logisticSites" 
+            [value]="site">
+            {{ site }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

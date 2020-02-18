@@ -1,0 +1,13 @@
+<div [formGroup]="form" >
+    <mat-form-field style="width: 100%;" [color]="'accent'" appearance="standard">
+        <mat-label>{{ 'DOCS.projectCode' | translate }}</mat-label>
+        <mat-select formControlName="projectCode"
+            panelClass="panel" disableOptionCentering >
+            <mat-option *ngFor="let project of projects" 
+                [value]="project.projectCode">
+                {{ project.projectCode }} - {{ project.projectName }}
+            </mat-option>
+        </mat-select>
+        <mat-error>{{ 'DOCS.projectCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+    </mat-form-field>
+</div>

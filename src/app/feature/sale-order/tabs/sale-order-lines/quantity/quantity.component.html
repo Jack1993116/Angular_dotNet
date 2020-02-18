@@ -1,0 +1,5 @@
+<mat-form-field appearance="standard" >
+    <input matInput formControlName="quantity" 
+        #quantity (blur)="setQuantity(quantity.value)">
+    <mat-error>{{ 'DOCS.quantity' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+</mat-form-field>

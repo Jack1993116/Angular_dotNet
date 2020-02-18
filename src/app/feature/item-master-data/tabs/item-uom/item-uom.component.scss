@@ -1,0 +1,18 @@
+@import "src/@fuse/scss/fuse";
+@import "../shared";
+
+app-item-uom {
+    div.form-tab {
+
+        @extend %tabs-shared;
+        
+        .holding-container {
+
+            width: 100%;
+            position: relative;
+            overflow: auto;
+
+        }
+
+    }
+}

@@ -1,0 +1,58 @@
+<div fxLayout="column">
+
+    <div fxLayout="row" class="header-row">
+        <app-header [title]="'NAV.ITEMGRP'" fxFlex="35"
+            [icon]="'group_work'" fxLayout="row"></app-header>
+    </div>
+
+    <div class="loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+
+    <div class="holding-container-v1">
+
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+                <div class="item-group-wrapper" fxLayout="row">
+                    <div [class.hide-keep-space]="!node.first" class="level-indic-container" fxLayout="row" fxLayoutAlign="center center">
+                        <div class="level-indic">{{ 1 + node.level }}</div>
+                    </div>
+                    <button mat-icon-button matTreeNodeToggle
+                        [class.hide-keep-space]="hideExpand(node)">
+                        <mat-icon class="mat-icon-rtl-mirror gold-fg">
+                            {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                    </button>
+                    <app-item-group-form
+                        [itemGroup]="node.item" 
+                        [formArray]="formArray"
+                        (newChild)="addNewChild($event, node)"
+                        (delete)="delete(node)"
+                        (lineToUpdate)="lineToUpdate.next($event)"
+                        [class.not-first]="!node.first">
+                    </app-item-group-form>
+                    <mat-checkbox *ngIf="showCheck"
+                        (change)="selectGroup(node)">{{ 'SELECT_GROUP' | translate }}</mat-checkbox>
+                </div>
+            </mat-tree-node>
+        </mat-tree>
+
+    </div>
+
+    <div class="chip-container" fxLayout="row" >
+        <mat-chip-list>
+            <mat-chip
+                class="styled-chip theme-chip"
+                (click)="addNewParent()">
+                <mat-icon>add</mat-icon>
+            </mat-chip>
+            <mat-chip
+                class="styled-chip"
+                [disabled]="!activateSave()"
+                (click)="save()">
+                {{ 'ACTIONS.SAVE' | translate }} <mat-icon>save</mat-icon>
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+</div>

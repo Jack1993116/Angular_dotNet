@@ -1,0 +1,127 @@
+<mat-toolbar class="p-0 mat-elevation-z1">
+
+    <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center" class="whiteDiv">
+
+        <button mat-icon-button class="navbar-toggle-button" 
+            *ngIf="!hiddenNavbar && !rightNavbar && isLoggedIn()" (click)="toggleSidebarOpen('navbar')" fxHide.gt-md>
+            <mat-icon class="secondary-text">menu</mat-icon>
+        </button>
+
+        <div class="toolbar-separator" *ngIf="!hiddenNavbar && !rightNavbar" fxHide.gt-md></div>
+
+        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+
+            <div class="px-8 px-md-16">
+                <fuse-shortcuts [navigation]="navigation"></fuse-shortcuts>
+            </div>
+
+        </div>
+
+        <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+
+            <button mat-button [matMenuTriggerFor]="locLogisticMenu" *ngIf="isLoggedIn()"
+                    class="user-button smallImg">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <img class="avatar mr-0 mr-sm-16" src="assets/icons/baseline_my_location_black_36dp2.png">
+                    <span class="username mr-12 greySpan" fxHide fxShow.gt-sm>{{ 'LOG_LOC_CHOOSE' | translate}}</span>
+                    <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+                </div>
+            </button>
+
+            <div class="toolbar-separator short"></div>
+
+            <button mat-button [matMenuTriggerFor]="erpMenu" *ngIf="isLoggedIn()"
+                    class="user-button smallImg">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <img class="avatar mr-0 mr-sm-16" src="assets/icons/outline_business_black_36dp2.png">
+                    <span class="username mr-12 greySpan" fxHide fxShow.gt-sm>{{ 'ERP_CHOOSE' | translate}}</span>
+                    <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+                </div>
+            </button>
+
+            <div class="toolbar-separator short"></div>
+
+            <button mat-button [matMenuTriggerFor]="userMenu"
+                    class="user-button avatarBtn">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <img class="avatar mr-0 mr-sm-16" [src]="srcImage">
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{ USER_NAME | translate}}</span>
+                    <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+                </div>
+            </button>                       
+
+            <mat-menu #locLogisticMenu="matMenu" [overlapTrigger]="false">
+
+                <div *ngFor="let site of logisticSite">
+                    <mat-option>
+                        <mat-checkbox [ngModel]="site.checked" 
+                            (change)="onChangeLogisticSite(site.logisticSite)">
+                            {{ site.logisticSite.logisticSiteName }}
+                        </mat-checkbox>
+                    </mat-option>
+                </div>
+
+            </mat-menu>
+
+            <mat-menu #erpMenu="matMenu" [overlapTrigger]="false">
+               
+                <div *ngFor="let erp of erpCompany">
+                    <mat-option>
+                        <mat-checkbox [ngModel]="erp.checked" (change)="onChangeErp(erp.erpCompany)" >
+                            {{ erp.erpCompany.erpCompanyName }}
+                        </mat-checkbox>
+                    </mat-option>
+                </div>
+
+            </mat-menu>
+
+            <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+
+                <div id="logged-out-menu" *ngIf="!isLoggedIn()">
+                    <button mat-menu-item (click)="login()">
+                        <mat-icon>account_circle</mat-icon>
+                        <span>{{ 'LOGIN' | translate }}</span>
+                    </button>
+                </div>
+
+                <div id="logged-in-menu" *ngIf="isLoggedIn()">
+                    <button mat-menu-item>
+                        <mat-icon>account_circle</mat-icon>
+                        <span>{{ 'MY_PROFILE' | translate }}</span>
+                    </button>
+
+                    <button mat-menu-item class="" (click)="logout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>{{ 'LOGOUT' | translate }}</span>
+                    </button>
+                </div>
+
+            </mat-menu>
+
+            <div class="toolbar-separator"></div>
+
+
+            <button mat-button fxHide fxShow.gt-xs
+                    class="language-button"
+                    [matMenuTriggerFor]="languageMenu">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <img class="flag mr-8" [src]="'assets/icons/flags/'+selectedLanguage.flag+'2.png'">
+                    <span class="iso text-uppercase">{{selectedLanguage.id}}</span>
+                </div>
+            </button>
+
+            <mat-menu #languageMenu="matMenu" [overlapTrigger]="false">
+
+                <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
+                    <span fxLayout="row" fxLayoutAlign="start center">
+                        <img class="flag mr-16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
+                        <span class="iso">{{lang.title}}</span>
+                    </span>
+                </button>
+
+            </mat-menu>
+        </div>
+
+    </div>
+
+</mat-toolbar>

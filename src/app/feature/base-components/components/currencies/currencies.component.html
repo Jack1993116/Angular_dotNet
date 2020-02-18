@@ -1,0 +1,15 @@
+<div [formGroup]="form" >
+    <mat-form-field style="width: 100%;" [color]="'accent'" appearance="standard">
+        <mat-label>{{ 'DOCS.curCode' | translate }}</mat-label>
+        <mat-select formControlName="curCode"
+            panelClass="panel" disableOptionCentering 
+            (click)="getUnitsFromServiceIfNeeded()">
+            <mat-option *ngFor="let currency of currency$ | async" 
+                [value]="currency.curCode">
+                {{ currency.curSymbol }}
+            </mat-option>
+        </mat-select>
+        <mat-error>{{ 'DOCS.curCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+    </mat-form-field>
+</div>
+

@@ -1,0 +1,12 @@
+<mat-form-field appearance="standard">
+    <mat-select formControlName="unitCode"
+        panelClass="panel" disableOptionCentering
+        (click)="getUnitsFromServiceIfNeeded()"
+        (selectionChange)="unitSelectionChange($event)">               
+        <mat-option *ngFor="let unit of units$ | async"
+            [value]="unit.unitCode">
+            {{ unit.unitCode }} - {{ unit.unitCode | units }}
+        </mat-option>
+    </mat-select>
+    <mat-error>{{ 'IMD.unitCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+</mat-form-field>

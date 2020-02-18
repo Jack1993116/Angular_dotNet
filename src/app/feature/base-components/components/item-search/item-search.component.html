@@ -1,0 +1,31 @@
+<div matAutocompleteOrigin #origin="matAutocompleteOrigin" fxLayout="row">
+
+    <mat-form-field appearance="standard" fxFlex="20">
+        <input matInput formControlName="itemCode"
+            [matAutocomplete]="autoItem"
+            [matAutocompleteConnectedTo]="origin">
+        <mat-autocomplete
+            #autoItem="matAutocomplete" (optionSelected)="selectItem($event)">
+            <mat-option class="search-result" *ngFor="let item of items$ | async"
+                [value]="item">   
+                {{ item.itemCode }} - {{ item.itemName }} - {{ item.frgnName }}    
+            </mat-option>
+        </mat-autocomplete>
+        <mat-error>{{ 'IMD.itemCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" fxFlex="40">
+        <input matInput formControlName="itemName"
+            [matAutocomplete]="autoItem"
+            [matAutocompleteConnectedTo]="origin"> 
+        <mat-error>{{ 'IMD.itemName' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" fxFlex="40">
+        <input matInput formControlName="frgnName"
+            [matAutocomplete]="autoItem"
+            [matAutocompleteConnectedTo]="origin"> 
+        <mat-error>{{ 'IMD.frgnName' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+    </mat-form-field>
+
+</div>

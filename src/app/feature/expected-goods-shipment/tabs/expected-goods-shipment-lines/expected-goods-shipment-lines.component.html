@@ -1,0 +1,172 @@
+<app-table-tab>
+
+    <form class="mat-card mat-elevation-z8 p-12" fxLayout="column" fxLayoutAlign="start"
+        name="form" [formGroup]="form" autocomplete="off">
+
+        <table mat-table [dataSource]="dataSource" 
+            formArrayName="lines">
+
+            <ng-container  matColumnDef="lineSeq" sticky>
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.lineSeq' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].lineSeq }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="logisticSiteCode">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.logisticSiteCode' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index" 
+                    [formGroupName]="index">
+                    <app-logistic-sites [bpCode]="form.get('bpCode').value"
+                        [form]="linesFormArray.controls[index]"
+                        [fatherForm]="form"></app-logistic-sites>
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="erpDocNum">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.erpDocNum' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].erpDocNum }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="bpDocNum">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.bpDocNum' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index" 
+                    [formGroupName]="index">
+                    <mat-form-field appearance="standard">
+                        <input matInput formControlName="bpDocNum">
+                        <mat-error>{{ 'DOCS.bpDocNum' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+                    </mat-form-field>
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="item">
+                <th mat-header-cell *matHeaderCellDef>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <label> {{ 'IMD.itemCode' | translate }} </label>
+                        <label> {{ 'IMD.itemName' | translate }} </label>
+                        <label> {{ 'IMD.frgnName' | translate }} </label>
+                    </div>
+                </th>
+                <td mat-cell *matCellDef="let element; let index = index" 
+                    [formGroupName]="index">
+                    <app-item-search [form]="linesFormArray.controls[index]"></app-item-search>
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="baseQty">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.baseQty' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index" 
+                    [formGroupName]="index">
+                    <mat-form-field appearance="standard">
+                        <input matInput formControlName="baseQty">
+                        <mat-error>{{ 'DOCS.baseQty' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+                    </mat-form-field>
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="allocated">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.allocated' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].allocated }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="onPlanning">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.onPlanning' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].onPlanning }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="onOrder">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.onOrder' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].onOrder }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="expRctQty">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.expRctQty' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].expRctQty }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="confDueDate">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.confDueDate' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].confDueDate | date:'shortDate' }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="lineStatusCode">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.lineStatusCode' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].lineStatusCode | docStatus }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="createDate">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.createDate' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].createDate | date:'shortDate' }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="updateDate">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.updateDate' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index"> 
+                    {{ expectedGoodsShipment.lines[index].updateDate | date:'shortDate' }}
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="revisionCode">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.revisionCode' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index" 
+                    [formGroupName]="index">
+                    <app-item-revisions
+                        [form]="linesFormArray.controls[index]">
+                    </app-item-revisions>
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="allowPartialShip">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.allowPartialShip' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index" 
+                    [formGroupName]="index">
+                    <mat-checkbox formControlName="allowPartialShip"></mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="allowPartialUOM">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.allowPartialUOM' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index" 
+                    [formGroupName]="index">
+                    <mat-checkbox formControlName="allowPartialUOM"></mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete" stickyEnd>
+                <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS.ACTION' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index">
+                    <div fxLayout="row">
+                        <a [routerLink]="" (click)="delete(index)">
+                            <mat-icon matSuffix class="disabled-text" [ngClass]="warn-color" class="red-fg">highlight_off</mat-icon> 
+                        </a>
+                        <a [routerLink]="" (click)="edit(index)">
+                            <mat-icon matSuffix class="disabled-text" class="primary-fg">edit</mat-icon> 
+                        </a>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+                [class.editable-row]="editableElement === element">
+        </table>
+        
+    </form>
+
+</app-table-tab>

@@ -1,0 +1,65 @@
+export class Demand {
+    id: number;
+    objType: string;
+    baseObjType: string;
+    baseDocID: number;
+    baseDocNum: number;
+    baseLine: number;
+    createDate: Date;
+    updateDate: Date;
+    reqDueDate: Date;
+    reqWeek: number;
+    confDueDate: Date;
+    confWeek: number;
+    allocPriority: number;
+    overwritePriority: boolean;
+    erpCompanyID: number;
+    docStatusCode: string;
+    itemID: number;
+    itemCode: string;
+    baseUnitCode: string;
+    baseQty: number;
+    openBaseQty: number;
+    allocated: number;
+    onOrder: number;
+    expRctQty: number;
+    demandSource: string;
+    bpCode: string;
+    plStatusID: number;
+    logisticSiteCode: string;
+    lines: DemandLine[];
+}
+
+export class DemandLine {
+    demandType: string;
+    baseDocNum: number;
+    baseLine: number;
+    demandID: number;
+    demandLineID: number;
+    demandLineSeq: number;
+    itemID: number;
+    itemCode: string;
+    quantity: number;
+    unitCode: string;
+    baseQuantity: number;
+    baseUnit: string;
+    softAllocated: number;
+    hardAllocated: number;
+    onPlanning: number;
+    onOrder: number;
+    expReceiptQty: number;
+    reqDueDate: Date;
+    reqWeek: number;
+    confDueDate: Date;
+    confWeek: number;
+    missingInventory: number;
+    planningTargetType: string;
+    allocationPriority: number;
+    planningStatusID: number;
+    planningStatusDescription: string;
+    targetObjType: string;
+    targetDocID: number;
+    targetDocNum: number;
+    targetLineNum: number;
+    logisticSiteCode: string;
+}

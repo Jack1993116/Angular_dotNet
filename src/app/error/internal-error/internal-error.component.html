@@ -1,0 +1,17 @@
+<div id="error-500" fxLayout="column" fxLayoutAlign="center center">
+
+  <div class="content" fxLayout="column" fxLayoutAlign="center center">
+
+      <div class="error-code">{{ 'INT_ERROR' | translate }}</div>
+
+      <div class="message">{{ 'BROKEN_INT' | translate }}</div>
+
+      <div class="sub-message">
+          {{ 'JUST_KID' | translate }} 
+      </div>
+
+      <a class="link" [routerLink]="'./home'">{{ 'REPORT' | translate }}</a>
+
+  </div>
+
+</div>

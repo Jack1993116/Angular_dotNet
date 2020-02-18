@@ -1,0 +1,6 @@
+{
+    "search.exclude": {
+        "**.js": true
+    },
+    "explorer.compactFolders": false
+}

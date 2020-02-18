@@ -1,0 +1,193 @@
+<app-table-tab (createEvent)="create($event)">
+
+    <table mat-table [dataSource]="saleOrder.lines" multiTemplateDataRows>
+                 
+        <ng-container  matColumnDef="expand">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [disabled]="!element.unitCodes || !element.unitCodes.length"
+                    (click)="expandedElement = expandedElement === element ? null : element">
+                        <mat-icon class="accent-fg">
+                            {{ expandedElement === element ? 'expand_less' : 'expand_more'}}
+                        </mat-icon>
+                    </button>
+                </td>
+        </ng-container>
+        
+        <ng-container  matColumnDef="lineSeq">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.lineSeq' | translate }} </th>
+                <td mat-cell *matCellDef="let element"> {{ element.lineSeq }} </td>
+        </ng-container>
+
+        <ng-container  matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.quantity' | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline"> 
+                    <input matInput [(ngModel)]="element.quantity"
+                        [disabled]="!element.itemID">
+                </mat-form-field>
+            </td>
+        </ng-container>
+            
+        <div *ngFor="let column of displayedColumns">
+            <ng-container  [matColumnDef]="column" *ngIf="column==='openQty' || column==='shipQty' || column==='priceRatio'">
+                <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.' + column | translate }}</th>
+                <td mat-cell *matCellDef="let element"> 
+                    {{ element[column] }}
+                </td>
+            </ng-container>
+        </div>
+
+        <!-- <app-item-search itemCode="itemCode" itemName='itemName'
+            frgnName='frgnName' (selctedItem)="itemChanged($event)"></app-item-search> -->
+
+        <!-- <app-item-revisions columnName="revisionCode"></app-item-revisions> -->
+
+        <!-- <app-logistic-sites columnName="logisticSiteCode"
+            [disabled]="!form.get('bpCode').value"></app-logistic-sites> -->
+        
+        <!-- <app-projects columnName="projectCode" [erpCompanyId]="erpCompanyId"></app-projects> -->
+
+        <!-- <app-currencies columnName="curCode" [erpCompanyId]="erpCompanyId"></app-currencies> -->
+
+        <!-- <app-units columnName="unitCode" modelBindingName='shipUnitCode' 
+            [lines]="saleOrder.lines" [item]="selectedItemEvent"></app-units> -->
+
+        <!-- <ng-container matColumnDef="unitCode">
+            <th mat-header-cell *matHeaderCellDef> {{ 'IMD.unitCode' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                <app-units-form-field [element]="element"
+                    modelBindingName='shipUnitCode'
+                    [item]="selectedItemEvent"></app-units-form-field>
+            </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="lineStatusCode">
+            <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.lineStatusCode' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.lineStatusCode | docStatus }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="createDate">
+            <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.createDate' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.createDate | date:'shortDate' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="updateDate">
+            <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.updateDate' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.updateDate | date:'shortDate' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="releasedQty">
+            <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.releasedQty' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                <div fxLayout="row" fxLayoutAlign="space-around">
+                    {{ element.releasedQty }}
+                    <a [routerLink]="" (click)="releaseQty(element)">
+                        <mat-icon matSuffix class="disabled-text" 
+                            class="deep-purple-fg" >
+                            add_to_photos
+                        </mat-icon> 
+                    </a>
+                </div>
+            </td>
+        </ng-container>
+            
+        <ng-container  matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.price' | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline"> 
+                    <input matInput [(ngModel)]="element.price">
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <ng-container  matColumnDef="discount">
+            <th mat-header-cell *matHeaderCellDef>{{ 'DOCS.discount' | translate }}</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="outline"> 
+                    <input matInput [(ngModel)]="element.discount">
+                    <span matSuffix>% &nbsp;</span>
+                </mat-form-field>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="frgnLineTotal">
+            <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.frgnLineTotal' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                {{ (element.quantity ? element.quantity : 0 ) * (element.price ? element.price : 0) * element.priceRatio * (1 - (element.discount !== 0  ? element.discount/100 : 0))  }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="allowPartialUOM">
+            <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.allowPartialUOM' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-checkbox [(ngModel)]="element.allowPartialUOM"></mat-checkbox>
+            </td>
+        </ng-container>
+            
+        <ng-container *ngIf="attributes && attributes.length > 0">
+            <div *ngFor="let column of attributes">
+                <ng-container  [matColumnDef]="column.name">
+                    <th mat-header-cell *matHeaderCellDef>{{ column.name | translate }}</th>
+                    <td mat-cell *matCellDef="let element" id="column.id"> 
+                        <ng-container *ngIf="!column.editable">
+                            <ng-container *ngIf="!dictonaryLen(column.values) > 0">
+                                {{ element.attributes[column.id] }}
+                            </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="column.editable">
+                            <mat-form-field appearance="outline"> 
+                                <ng-container *ngIf="dictonaryLen(column.values) > 0">
+                                    <mat-select [(ngModel)]="element.attributes[column.id]">
+                                        <mat-option [value]="null">Choose an option</mat-option>
+                                        <mat-option *ngFor="let option of column.values | keyvalue"
+                                            [value]="option.key">
+                                            {{ option.key }} - {{ option.value }}
+                                        </mat-option>
+                                    </mat-select>
+                                </ng-container>
+                                <ng-container *ngIf="!dictonaryLen(column.values) > 0">
+                                    <input matInput [(ngModel)]="element.attributes[column.id]"
+                                        #inputAttribute
+                                        (input)="updateConnectedField(inputAttribute.value, column.id, element)">
+                                </ng-container>   
+                            </mat-form-field>                                            
+                        </ng-container>
+                    </td>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="line-unit-code-details" 
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <div class="line-unit-code-details-table">                           
+                        <app-line-unit-code [saleOrderLine]="element"></app-line-unit-code>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS.DELETE' | translate }} </th>
+            <td mat-cell *matCellDef="let element">
+                <a [routerLink]="" (click)="delete(element)">
+                    <mat-icon matSuffix class="disabled-text" [ngClass]="warn-color" class="red-fg" (mouseover)="warn-color='red-A400-fg'" (mouseout)="warn-color='red-fg'">highlight_off</mat-icon> 
+                </a>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+            [class.expanded-row]="expandedElement === element">
+        </tr> 
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>     
+    </table>
+
+</app-table-tab>

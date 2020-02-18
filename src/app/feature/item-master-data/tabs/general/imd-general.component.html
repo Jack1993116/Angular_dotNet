@@ -1,0 +1,40 @@
+<app-table-tab>
+    <form class="mat-card form-with-lines mat-elevation-z8 p-12" fxLayoutAlign="start"
+        [formGroup]="form" fxLayout="column" autocomplete="off">
+
+        <div class="form-header" fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    
+            <mat-form-field appearance="standard" fxFlex="33" [color]="'accent'">
+                <mat-label>{{ 'itemGroupCode' | translate }}</mat-label>
+                <mat-select formControlName="itemGroupCode">
+                    <mat-option *ngFor="let group of groupCode" [value]="group.itemGroupCode">
+                        {{ group.itemGroupCode }} - {{ group.groupName }}
+                    </mat-option>
+                </mat-select>   
+                <mat-error>{{ 'itemGroupCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" fxFlex="33" [color]="'accent'">
+                <mat-label>{{ 'itemType' | translate }}</mat-label>
+                <mat-select formControlName="itemType">
+                    <mat-option *ngFor="let type of itemType" [value]=type.type>
+                        {{ type.type }} - {{ type.desc }}
+                    </mat-option>                         
+                </mat-select>
+                <mat-error>{{ 'itemType' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>   
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" fxFlex="33" [color]="'accent'">
+                <mat-label>{{ 'IMD.baseUnitCode' | translate }}</mat-label>
+                <mat-select formControlName="baseUnitCode">
+                    <mat-option *ngFor="let unit of unitOfMeasure" [value]="unit.unitCode">
+                        {{ unit.unitCode }} - {{ unit.unitName }}
+                    </mat-option>
+                </mat-select>   
+                <mat-error>{{ 'IMD.baseUnitCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+            </mat-form-field>
+
+        </div>
+
+    </form>
+</app-table-tab>

@@ -1,0 +1,85 @@
+
+app-item-group-form {
+
+    .item-group-form {
+
+        .mat-form-field {
+
+            margin: 0px 15px;
+
+            .mat-form-field-wrapper {
+                padding-bottom: 0.343em;
+
+                .mat-form-field-flex {
+                    
+                    padding-top: 1.8em;
+
+                    .mat-form-field-infix {
+
+                        font-size: calc(10px + 0.5vh) !important;
+                        color: #8b8b8b !important;
+                        font-family: "Proxima Nova", sans-serif !important;
+                        font-weight: 500 !important;
+                        padding-top: 1em;
+                    
+                        .mat-form-field-label-wrapper {
+                            
+                            top: -1.5em;
+                            padding-top: 1.5em;
+                            .mat-form-field-label {
+                                white-space: normal;
+                                font-size: calc(10px + 0.9vh) !important;
+                                color: #8b8b8b !important;
+                                font-family: "Proxima Nova", sans-serif !important;
+                                font-weight: bold !important;
+                                position: sticky;
+                                top: 0.3em;
+                                z-index: 1000;
+                            }
+                        }
+                    }
+                }
+
+                .mat-form-field-underline {
+                    bottom: 0.765em;
+                }
+            
+            }   
+
+            &.mat-form-field-disabled {
+                .mat-form-field-wrapper {
+                    .mat-form-field-underline {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .mat-button:not([disabled]) {
+            mat-icon {
+                color: #de990f;
+            }
+        }
+    }
+
+    &.not-first {
+        .item-group-form {
+            .mat-form-field {
+                align-self: center;
+                .mat-form-field-flex {
+                    padding-top: 0px;
+                    .mat-form-field-infix {
+                        padding-top: 0px;
+                        .mat-form-field-label-wrapper {
+                            top: 0;
+                            padding-top: 0;
+                            .mat-form-field-label {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }  
+        }
+    }
+}

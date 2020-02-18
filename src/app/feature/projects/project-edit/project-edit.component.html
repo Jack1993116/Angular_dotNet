@@ -1,0 +1,24 @@
+<div fxLayout="column">
+    
+    <div fxLayout="row" class="header-row">
+
+        <app-header [title]="'PROJECT_EDIT'" fxFlex="35"
+            [icon]="'ballot'" fxLayout="row"></app-header>
+        
+        <app-form-header-plug fxFlex="60" 
+            [entity]="entity" [showUpload]="false" [showReport]="false"
+            [form]="form"></app-form-header-plug>
+        
+        <div fxFlex="5"></div>
+        
+    </div>
+
+    <div class="save-spinner" *ngIf="isSaving">
+        <mat-spinner *ngIf="isSaving"></mat-spinner>    
+    </div>
+
+    <app-project-detail [project]="entity" 
+        (saveEvent)="save($event)"
+        (formInit)="setForm($event)"></app-project-detail>
+
+</div>

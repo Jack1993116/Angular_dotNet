@@ -1,0 +1,84 @@
+<div class="p-24" fxLayout="row wrap">
+    <div  fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!-- Attach ID Column -->
+            <ng-container matColumnDef="attachLineID" >
+                <th mat-header-cell *matHeaderCellDef class="w-100" > {{ 'LINE_ID' | translate }}</th>
+                <td mat-cell *matCellDef="let element"> {{element.attachLineID}} </td>
+            </ng-container>
+
+            <!-- File Name Column -->
+            <ng-container matColumnDef="fileName">
+                <th mat-header-cell *matHeaderCellDef>  {{ 'FILE_NAME' | translate }}</th>
+                <td mat-cell *matCellDef="let element"> {{element.fileName}} </td>
+            </ng-container>
+
+            <!-- File URL Column -->
+            <ng-container matColumnDef="fileURL">
+                <th mat-header-cell *matHeaderCellDef> {{ 'FILE_URL' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    <a [href]="element.fileURL" target = "_blank">
+                        <mat-icon class="secondary-text s-48">attachment</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+
+            <!-- File Type Column -->
+            <ng-container matColumnDef="fileType">
+                <th mat-header-cell *matHeaderCellDef> {{ 'FILE_TYPE' | translate }}</th>
+                <td mat-cell *matCellDef="let element"> {{element.fileType}} </td>
+            </ng-container>
+
+            <!-- Created Date Column -->
+            <ng-container matColumnDef="createDate">
+                <th mat-header-cell *matHeaderCellDef> {{ 'CREATED' | translate }}</th>
+                <td mat-cell *matCellDef="let element"> {{element.createDate}} </td>
+            </ng-container>
+
+            <!-- Comment Column -->
+            <ng-container matColumnDef="comment">
+                <th mat-header-cell *matHeaderCellDef>  {{ 'COMMENT' | translate }} </th>
+                <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
+            </ng-container>
+
+            <!-- Edit Column -->
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef>  {{ 'EDIT' | translate }}</th>
+                <td mat-cell *matCellDef="let element">
+                    <a (click)="editAttachLine(element)" href="javascript:void(0)">
+                        <mat-icon class="secondary-text s-48">edit</mat-icon>
+                    </a>
+
+                </td>
+            </ng-container>
+
+            <!-- Delete Column -->
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>  {{ 'DELETE' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    <a (click)="deleteAttachLine(element.attachLineID)" href="javascript:void(0)">
+                        <mat-icon class="secondary-text s-48">delete</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <div fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="35" class = "pl-24">
+        <input hidden  #hiddenUploader type="file" [fileUploadInputFor]= "fileUploadQueue" multiple/>
+        <div [fileUploadInputFor]="fileUploadQueue" class="upload-drop-zone" (click)="hiddenUploader.click()">
+            <div class = "">
+               {{ 'DROP_CLICK_FILE_UPLOAD' | translate }}
+            </div>
+        </div>
+        <div>
+            <mat-file-upload-queue #fileUploadQueue multiple>
+                <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index" [attachID]="attachID"></mat-file-upload>
+            </mat-file-upload-queue>
+        </div>
+    </div>
+</div>
+

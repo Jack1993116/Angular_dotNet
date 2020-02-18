@@ -1,0 +1,19 @@
+@import "src/@fuse/scss/fuse";
+// @import "../shared";
+
+app-imd-general {
+
+   // div.form-tab {
+
+   //    @extend %tabs-shared;
+        
+   // }
+   app-table-tab {
+      form.form-with-lines {
+         .form-header {
+            padding: 0 !important;
+            margin: 0 !important;
+         }
+      }
+   }
+}

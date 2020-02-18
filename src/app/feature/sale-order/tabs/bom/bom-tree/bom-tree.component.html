@@ -1,0 +1,26 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+        <div class="bom-wrapper" fxLayout="row">
+            <div [class.hide-keep-space]="!node.first" class="level-indic-container" fxLayout="row" fxLayoutAlign="center center">
+                <div class="level-indic">{{ 1 + node.level }}</div>
+            </div>
+            <button mat-icon-button matTreeNodeToggle
+                [class.hide-keep-space]="hideExpand(node)">
+                <mat-icon class="mat-icon-rtl-mirror gold-fg">
+                    {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                </mat-icon>
+            </button>
+            <app-bom-form [logisticSite]="logisticSite"
+                [bom]="node.item" 
+                [unitForm]="unitForm"
+                [formEnableDisable]="formEnableDisable"
+                [selectedErp]="selectedErp"
+                [selectedCurCode]="selectedCurCode"
+                (newChild)="addNewChild($event, node)"
+                (delete)="delete(node)"
+                (lineToUpdate)="lineToUpdate.next($event)"
+                [class.not-first]="!node.first"></app-bom-form>
+        </div>
+    </mat-tree-node>
+</mat-tree>

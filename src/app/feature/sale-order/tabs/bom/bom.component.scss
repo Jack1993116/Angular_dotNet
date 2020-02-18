@@ -1,0 +1,30 @@
+@import '~igniteui-angular/lib/core/styles/themes/index';
+
+app-bom {
+
+    .grid__wrapper {
+
+        margin: 15px;
+
+        table {
+            width: auto !important;
+        }
+        
+        
+        .igx-grid__thead-title, .igx-grid__th, .igx-grid__td {
+            font-size: 1.5rem;
+            line-height: 1.3rem;
+        }
+
+        .igx-grid__td--editing igx-input-group {
+            margin-top: 0;
+        }
+
+        .igx-grid__td--editing .igx-input-group__input {
+            font-size: 1.5rem !important;
+            height: 1.6rem;
+        }
+
+    }
+
+}

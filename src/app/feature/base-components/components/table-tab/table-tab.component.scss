@@ -1,0 +1,96 @@
+@import "src/@fuse/scss/fuse"; 
+
+app-table-tab {  
+
+    overflow: auto;
+    max-height: 80vh;
+
+    table {
+
+        .mat-table-sticky:first-child {
+            border-right: 1px solid #e0e0e0;
+        }
+          
+        .mat-table-sticky:last-child {
+            border-left: 1px solid #e0e0e0;
+            color: #de990f !important;
+        }
+
+        .mat-form-field-infix {
+            width: fit-content;
+        }
+
+        th:last-of-type {
+            padding-right: 10px !important;
+        }
+
+        th:first-of-type {
+            padding-left: 10px !important;
+        }
+
+        tr.mat-row {
+
+            td {
+
+                .mat-form-field-wrapper {
+
+                    .mat-form-field-infix {
+
+                        border: 0;
+                        padding: 0;
+
+                        .mat-select {
+
+                            font-size: calc(10px + 0.5vh) !important;
+                            color: #8b8b8b !important;
+                            font-family: "Proxima Nova", sans-serif !important;
+                            font-weight: 500 !important;
+                            
+                            .mat-select-value {
+                                color: #8b8b8b !important;
+                            }
+                        }
+                        
+
+                        .mat-input-element:disabled, .mat-select-disabled {
+                            color: #8b8b8b !important;
+                        }
+                    }
+
+                    .mat-form-field-underline {
+                        display: none;
+                    }
+                    
+                    .mat-form-field-subscript-wrapper {
+                        white-space: nowrap;
+                    }
+
+                }
+
+            }
+
+        }
+
+        tr.mat-row.editable-row {
+            .mat-form-field-wrapper {
+                .mat-form-field-underline {
+                    display: block;
+                }
+            }
+        }
+
+        td.mat-cell.extra-wide {
+            width: 18%;
+        }
+
+        td.mat-cell.wide {
+            width: 7%;
+        }
+
+        td.mat-cell.narrow {
+            width: 2%;
+        }
+
+    }
+
+}

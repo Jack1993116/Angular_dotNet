@@ -1,0 +1,76 @@
+<div fxLayout="column">
+
+    <form class="mat-card form-with-lines mat-elevation-z8" fxLayoutAlign="start"
+        [formGroup]="form" fxLayout="column" autocomplete="off">
+
+        <div class="form-header" fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                        
+            <mat-checkbox formControlName="revisionManaged" fxFlex="20"
+                (change)="revManageChange()">
+                {{ 'revisionManaged' | translate }}</mat-checkbox>
+
+            <mat-form-field appearance="standard" fxFlex="20" [color]="'accent'">
+                <mat-label>{{ 'revType' | translate }}</mat-label>
+                <mat-select formControlName="revTypeID"
+                    panelClass="panel" disableOptionCentering
+                    (selectionChange)="revTypeSelect()">
+                    <mat-option *ngFor="let type of revTypes" [value]=type.revTypeID>
+                        {{ type.revTypeName }}
+                    </mat-option>                         
+                </mat-select>
+                <mat-error>{{ 'revType' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>   
+            </mat-form-field>
+        
+        </div>
+
+    </form>
+
+    <div class="table-container"> 
+
+        <table mat-table class="accent-row" [dataSource]="itemRevList" matSort
+            *ngIf="itemRevList.length > 0">
+
+            <ng-container matColumnDef="itemRevID">
+                <th mat-header-cell *matHeaderCellDef> {{ 'itemRevID' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.itemRevID | docStatus }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="revisionCode">
+                <th mat-header-cell *matHeaderCellDef> {{ 'revisionCode' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.revisionCode | docStatus }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="createDate">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.createDate' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.createDate | date:'shortDate' }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="updateDate">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.updateDate' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.updateDate | date:'shortDate' }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef> {{ 'ACTIONS.DELETE' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    <a [routerLink]="" (click)="delete(element)">
+                        <mat-icon matSuffix class="disabled-text" [ngClass]="warn-color" class="red-fg" (mouseover)="warn-color='red-A400-fg'" (mouseout)="warn-color='red-fg'">highlight_off</mat-icon> 
+                    </a>
+                </td>
+            </ng-container>
+                
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>      
+        </table>
+
+    </div>
+
+</div>

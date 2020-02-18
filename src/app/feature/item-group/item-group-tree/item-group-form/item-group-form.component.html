@@ -1,0 +1,37 @@
+<form class="item-group-form" fxLayout="row" fxLayoutAlign="start"
+    name="form" [formGroup]="form" autocomplete="off">
+
+    <div  fxLayout="row" >
+
+        <mat-form-field  appearance="standard" [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'itemGroupCode' | translate }}</mat-label>
+            <input matInput formControlName="itemGroupCode" (input)="setGroupCode()">
+            <mat-error>{{ 'itemGroupCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'itemGroupName' | translate }}</mat-label>
+            <input matInput formControlName="itemGroupName" (input)="setGroupName()">
+            <mat-error>{{ 'itemGroupName' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field  appearance="standard" [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'parentGroupCode' | translate }}</mat-label>
+            <input matInput formControlName="parentGroupCode">
+            <mat-error>{{ 'parentGroupCode' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+        </mat-form-field> -->
+
+        <button mat-button
+            [disabled]="form.disabled || form.invalid"
+            (click)="addNewlevel()">
+            <mat-icon>add</mat-icon>
+        </button>
+
+        <button mat-button
+            [disabled]="form.disabled"
+            (click)="delete.next(itemGroup)">
+            <mat-icon class="red-fg">highlight_off</mat-icon>
+        </button>
+    </div>
+
+</form>

@@ -1,0 +1,19 @@
+<div fxLayout="row" >
+    <label class="enhanced-label line-center">{{ 'PRINT_AS' | translate }}</label>
+    <button class="icon cursor"
+        [disabled]="!selectedLayout"
+        mat-stroked-button 
+        (click)="getReport()">
+        <img src="assets/icons/Pdf_icon_file.png">
+    </button>
+</div>
+<mat-form-field appearance="outline">
+    <mat-select [(ngModel)]="selectedLayout"
+        panelClass="panel" disableOptionCentering >
+        <mat-option class="enhanced-label"
+            *ngFor="let layout of layouts"
+            [value]="layout.layID">
+            {{ layout.layName }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

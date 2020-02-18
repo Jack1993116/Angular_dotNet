@@ -1,0 +1,9 @@
+<div class="external-content p-4">      
+    <div class="content">
+
+        <!-- <app-header [icon]="icon" [title]="title" fxLayout="coulmn"></app-header> -->
+
+        <router-outlet (activate)="componentAdded($event)" (deactivate)="componentRemoved($event)"></router-outlet>
+    
+    </div>
+</div>

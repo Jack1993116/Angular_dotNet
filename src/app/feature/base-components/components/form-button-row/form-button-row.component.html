@@ -1,0 +1,39 @@
+<div fxLayout="row">
+
+    <div class="new-line-btn-row" fxLayout="row" fxFlex="50">
+        <div class="chip-container" fxLayout="row" >
+            <mat-chip-list>
+                    <mat-chip
+                        class="styled-chip theme-chip"
+                        [disabled]="!form.valid"
+                        (click)="addLine()">
+                        <mat-icon>add_circle_outline</mat-icon>
+                        {{ 'ACTIONS.ADD_LINE' | translate }} 
+                    </mat-chip>
+            </mat-chip-list>
+        </div>
+    </div>
+
+    <div class="button-row" fxLayout="row" fxFlex="50">
+        <div class="chip-container" fxLayout="row" >
+            <mat-chip-list>
+                <mat-chip *ngIf="plugButtonTxt"
+                    class="styled-chip theme-chip"
+                    [disabled]="!form.valid"
+                    (click)="plugButtonAction()">
+                    {{ plugButtonTxt | translate }}
+                </mat-chip>
+                <mat-chip class="styled-chip"
+                    [disabled]="!form.valid || !form.dirty"
+                    (click)="save()">
+                    {{ 'ACTIONS.SAVE' | translate }} <mat-icon>save</mat-icon>
+                </mat-chip>
+                <mat-chip (click)="goBack()"
+                    class="styled-chip">
+                    {{ 'ACTIONS.BACK' | translate }} <mat-icon>keyboard_backspace</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+    </div> 
+
+</div>

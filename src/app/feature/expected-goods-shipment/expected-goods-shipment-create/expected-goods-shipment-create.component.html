@@ -1,0 +1,27 @@
+<div fxLayout="column">
+    
+    <div fxLayout="row" class="header-row">
+
+        <app-header [title]="'EGS_CREATE'" fxFlex="35"
+            [icon]="'departure_board'" fxLayout="row"></app-header>
+        
+        <app-form-header-plug fxFlex="60" 
+            [entity]="entity" [showUpload]="false" [showReport]="false"
+            [form]="form"></app-form-header-plug>
+        
+        <div fxFlex="5"></div>
+        
+    </div>
+
+    <div class="save-spinner" *ngIf="isSaving">
+        <mat-spinner *ngIf="isSaving"></mat-spinner>
+    </div>
+    
+    <app-expected-goods-shipment-detail 
+        [expectedGoodsShipment]="entity" 
+        (saveEvent)="save($event)" (saveAndWOEvent)="postAndWO($event)"
+        (formInit)="setForm($event)"></app-expected-goods-shipment-detail>
+    
+</div>
+
+               

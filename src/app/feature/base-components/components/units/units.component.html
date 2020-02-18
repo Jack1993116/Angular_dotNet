@@ -1,0 +1,18 @@
+<ng-container matColumnDef>
+    <th mat-header-cell *matHeaderCellDef> {{ 'IMD.' + columnName | translate }} </th>
+    <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="outline">
+            <mat-select [(ngModel)]="element[modelBindingName]"
+                [disabled]="!element.logisticSiteCode ||
+                    !element.itemID" 
+                (click)="searchUnits(element.logisticSiteCode, 
+                    element.itemID)"
+                (selectionChange)="unitSelectionChange($event, element)">               
+                <mat-option *ngFor="let unit of units[element['itemID']]"
+                    [value]="unit.unitCode">
+                    {{ unit.unitCode }} - {{ unit.unitCode | units }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </td>
+</ng-container>

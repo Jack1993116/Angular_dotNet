@@ -1,0 +1,4 @@
+<ng-content></ng-content>
+<br>
+<button mat-raised-button color="primary" *ngIf="files.length > 0" (click)="uploadAll()" style = "margin-right:20px;">{{ 'UPLOAD_ALL' | translate }}</button>
+<button mat-raised-button color="primary" *ngIf="files.length > 0" (click)="removeAll()">{{ 'REMOVE_ALL' | translate }}</button>

@@ -1,0 +1,17 @@
+<div id="error-401" fxLayout="column" fxLayoutAlign="center center">
+
+  <div class="content" fxLayout="column" fxLayoutAlign="center center">
+
+      <div class="error-code">{{ 'UNAUTH' | translate }}</div>
+
+      <div class="message">{{ 'LOOKS_UNAUTH' | translate }}</div>
+
+      <div class="sub-message">
+          {{ 'LOGIN_OR_ADMIN' | translate}}
+      </div>
+
+      <a class="link" [routerLink]="'/login'">{{ 'LOGIN' | translate }}</a>
+
+  </div>
+
+</div>

@@ -1,0 +1,77 @@
+
+<div class="grid__wrapper">
+  <igx-tree-grid #treeGrid [data]="dataSource" childDataKey="children" 
+    width="100%" [autoGenerate]="false" [columnPinning]="true">
+
+    <igx-column field="lineSeq" [header]="trans('DOCS.lineSeq')" dataType="string" [editable]="false" >
+        <ng-template igxCell let-val let-cell="cell">
+          <label>{{ val }}</label>
+          <button mat-button
+            [disabled]="formInvalid"
+            color="accent"
+            (click)="addNewlevel(cell)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </ng-template>
+    </igx-column>
+
+    <igx-column field="childItemCode" [header]="trans('IMD.itemCode')" dataType="string" [editable]="true" [width]="'200px'">
+        <ng-template igxCell let-val let-cell="cell">
+            <mat-form-field>
+              <input matInput 
+                (input)="searchItems(cell, itemCodeInput.value)" 
+                (blur)="checkItem(cell)"
+                #itemCodeInput
+                [ngModel]="val"
+                [matAutocomplete]="autoItemCode">
+              <mat-autocomplete #autoItemCode
+                (optionSelected)="selectItem($event, cell)">
+                <mat-option *ngFor="let item of items$ | async"
+                  [value]="item">
+                  {{ item.itemCode }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+        </ng-template>
+    </igx-column>
+
+    <igx-column field="childUnitCode" [header]="trans('IMD.unitCode')" dataType="string" [editable]="false" ></igx-column>
+    <igx-column field="bomQty" [header]="trans('DOCS.bomQty')" dataType="number" [editable]="false" ></igx-column>
+    <igx-column field="bomToTopQty" [header]="trans('DOCS.bomToTopQty')" dataType="number" [editable]="false" ></igx-column>
+    
+    <igx-column field="quantity" [header]="trans('DOCS.quantity')" dataType="number" [editable]="true" >
+      <ng-template igxCell let-val let-cell="cell">
+          <mat-form-field>
+            <input matInput [(ngModel)]="val" type="number"
+              #qty
+              (blur)="checkItemQty(cell, qty.value)">
+          </mat-form-field>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="baseQty" [header]="trans('DOCS.baseQty')" dataType="number" [editable]="false" ></igx-column>
+    <igx-column field="baseUnitCode" [header]="trans('IMD.baseUnitCode')" dataType="string" [editable]="false" ></igx-column>
+    <igx-column field="childRevisionCode" [header]="trans('DOCS.revisionCode')" dataType="string" [editable]="false" ></igx-column>
+    <igx-column field="localLineTotal" [header]="trans('DOCS.localLineTotal')" dataType="boolean" [editable]="false" ></igx-column>
+    <igx-column field="sysLineTotal" [header]="trans('DOCS.sysLineTotal')" dataType="number" [editable]="false" ></igx-column>
+    <igx-column field="costPrice" [header]="trans('DOCS.costPrice')" dataType="number" [editable]="false" ></igx-column>
+    <igx-column field="costCurrency" [header]="trans('DOCS.costCurrency')" dataType="number" [editable]="false" ></igx-column>
+    <igx-column field="costTotal" [header]="trans('DOCS.costTotal')" dataType="number" [editable]="false" ></igx-column>
+    <igx-column field="localCostTotal" [header]="trans('DOCS.localCostTotal')" dataType="number" [editable]="false" ></igx-column>
+    <igx-column field="sysCostTotal" [header]="trans('DOCS.sysCostTotal')" dataType="number" [editable]="false" ></igx-column>
+    <igx-column field="include" [header]="trans('DOCS.include')" dataType="boolean" [editable]="true" >
+        <ng-template igxCell let-val let-cell="cell">
+          <mat-checkbox [(ngModel)]="val"
+          (change)="changeInclude(cell)"></mat-checkbox>
+        </ng-template>
+    </igx-column>
+    <igx-column field="delete" [header]="trans('ACTIONS.DELETE')" dataType="string" [editable]="false" >
+      <ng-template igxCell let-val let-cell="cell">
+          <button mat-button
+            (click)="delete(cell)">
+          <mat-icon class="red-fg">highlight_off</mat-icon>
+        </button>
+      </ng-template>  
+    </igx-column>
+  </igx-tree-grid>
+</div>

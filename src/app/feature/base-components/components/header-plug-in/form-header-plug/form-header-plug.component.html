@@ -1,0 +1,56 @@
+<div class="outer-row" fxLayout="row">
+
+    <div fxLayout="row" class="innner-row" fxFlex="1 0 auto">
+        <div fxLayout="row" *ngIf="showReport">
+            <app-reports fxLayout="row"
+                [objType]="'SalOrd'" [objKey]="entity['docID']"
+                [erpCompanyId]="entity['erpCompanyID']" 
+                [objFileNameKey]="entity['docNum']"></app-reports>
+        </div>
+
+        <div fxLayout="row" *ngIf="showUpload">
+            <label for="file" class="enhanced-label line-center">{{ 'IMPORT_FILE' | translate | translate}}</label>
+            <input type="file" hidden 
+                #uploader
+                (change)="handleFileInput($event.target.files)">
+            <button class="excel-button cursor"
+                mat-stroked-button
+                [disabled]="!form?.get('bpCode').value ||
+                    !form?.get('projectCode').value"
+                (click)="uploader.click()">
+                <img src="assets/icons/supported-platforms-excel-logo-png-3.png">
+            </button>
+        </div>
+    </div>
+
+    <div fxLayout="column" class="dates-status" fxFlex="2 0 auto"
+        *ngIf="form?.get('docStatusCode')">
+
+        <div fxLayout="row" class="status-field" fxLayoutAlign="end" >
+            <mat-label class="enhanced-label-thin">{{ 'DOCS.docStatusCode' | translate }}: </mat-label>
+            <label class="enhanced-label gold-colored">{{ form?.get('docStatusCode').value | docStatus }}</label>
+        </div>
+
+        <div fxLayout="row" class="dates-field" fxLayoutAlign="end">
+
+            <div>
+                <mat-label class="enhanced-label-light">
+                    {{ 'DOCS.createDate' | translate }}:
+                </mat-label>
+                <mat-label class="enhanced-label">
+                    {{ entity['createDate'] | date:'shortDate' }}
+                </mat-label>
+            </div>
+    
+            <div>
+                <mat-label class="enhanced-label-light">
+                    {{ 'DOCS.updateDate' | translate }}:
+                </mat-label>
+                <mat-label class="enhanced-label">
+                    {{ entity['updateDate'] | date:'shortDate' }}
+                </mat-label>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="form-tab p-24" [formGroup]="form" fxLayout="column" fxFlex="1 0 auto">
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+        <div class="holding-container mat-elevation-z8">
+                
+            <div class="table-container">
+
+                <table mat-table [dataSource]="itemLogisticSettings">
+                                        
+                    <ng-container matColumnDef="logisticSiteCode">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'logisticSiteCode' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.logisticSiteCode }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="defReceiveUnitCode">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'defReceiveUnitCode' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.itemSetting.defReceiveUnitCode }} 
+                            <mat-select formControlName="{{ element.logisticSiteCode }}defReceiveUnitCode">
+                                <mat-option *ngFor="let unit of unitOfMeasure" [value]="unit.unitCode">
+                                    {{ unit.unitCode }} - {{ unit.unitName }}
+                                </mat-option>
+                            </mat-select>   
+                            <mat-error>{{ 'BASE_UNIT_REQ' | translate }}</mat-error>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="batchManaged">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'batchManaged' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.itemSetting.batchManaged }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="revisionManaged">
+                        <th mat-header-cell *matHeaderCellDef>{{ 'revisionManaged' | translate }} </th>
+                        <td mat-cell *matCellDef="let element"> {{ element.itemSetting.revisionManaged }} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+       

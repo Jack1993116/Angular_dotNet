@@ -1,0 +1,19 @@
+<div class="form-tab p-24" [formGroup]="form" fxLayout="column" fxFlex="1 0 auto">
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+        <div class="holding-container mat-elevation-z8">
+
+            <mat-tab-group class="flat-lable" dynamicHeight [backgroundColor]="'accent'" [color]="'primary'">
+                <mat-tab *ngFor="let site of itemLogisticSites" label="{{ site }}">
+                    <p *ngFor="let IOM of itemUOMLogisticSiteDictionar.get(site)">
+                        Item: {{ IOM.itemCode }}
+                    </p>
+                </mat-tab>
+            </mat-tab-group>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,150 @@
+<div class="dialog-content-wrapper">
+
+    <mat-toolbar class="mat-accent m-0">
+        <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{ dialogTitle | translate }}</span>
+            <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div mat-dialog-content class="p-16 pb-0 m-0" fusePerfectScrollbar>
+            
+        <table mat-table [dataSource]="lines" matSort>
+
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="docNum">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.docNum' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.docNum }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="lineSeq">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.lineSeq' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.lineSeq }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="SOlineSeq">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.SOlineSeq' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.sol.lineSeq }}
+                </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="itemCode">
+                <th mat-header-cell *matHeaderCellDef> {{ 'IMD.itemCode' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.sol.itemCode }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="SOQty">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.SOQty' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.sol.qty }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="SOReleasedQty">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.SOReleasedQty' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.sol.egslsQty }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="reqDueDate">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.reqDueDate' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.reqDueDate | date:'shortDate' }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="confDueDate">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.confDueDate' | translate }} </th>
+                <td mat-cell *matCellDef="let element">
+                    {{ element.confDueDate | date:'shortDate' }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="baseQty">
+                <th mat-header-cell *matHeaderCellDef> {{ 'DOCS.baseQty' | translate }} </th>
+                <td mat-cell *matCellDef="let element; let index = index">
+                    <mat-form-field appearance="standard">
+                        <input matInput [(ngModel)]="element.baseQty"
+                            #qty [formControl]="qtyControl[index]"
+                            (blur)="checkQty(qty.value, element)">
+                        <mat-error *ngIf="lineErr === -1 || 
+                            (element.sol && element.sol.lineSeq === lineErr)">
+                            {{ 'ERR_LINE_QTY' | translate }}
+                        </mat-error>
+                    </mat-form-field>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>       
+
+        </table>
+
+    </div>
+
+    <div *ngIf="dialogTitle==='Release Quantity'" 
+        mat-dialog-actions class="m-0 p-16 space-between" fxLayout="row">
+
+        <div fxFlex="30">
+            <mat-chip-list>
+                <mat-chip class="styled-chip theme-chip"
+                    (click)="dialogRef.close([false, true])">
+                    {{ 'NEW' | translate }} <mat-icon>add_circle_outline</mat-icon> 
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+
+        <div fxFlex="70" fxLayoutAlign="end">
+            <mat-chip-list>
+                <mat-chip class="styled-chip" 
+                    [disabled]="lineErr || !lines || lines.length < 1"
+                    (click)="dialogRef.close([true, lines])" >
+                    {{ 'SAVE' | translate }} <mat-icon>save</mat-icon> 
+                </mat-chip>
+                <mat-chip class="styled-chip"
+                    (click)="dialogRef.close([false, false])">
+                    {{ 'CANCEL' | translate }} <mat-icon>arrow_back</mat-icon> 
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+    </div>
+
+    <div *ngIf="dialogTitle==='Add Expected Goods Lines'" 
+        mat-dialog-actions class="m-0 p-16 flex-end" fxLayout="row">
+        <mat-chip-list>
+            <mat-chip class="styled-chip" (click)="dialogRef.close([false])" >
+                {{ 'CANCEL' | translate }} <mat-icon>arrow_back</mat-icon> 
+            </mat-chip>
+            <mat-chip class="styled-chip theme-chip" 
+                (click)="dialogRef.close([true, selection])">
+                {{ 'NEW' | translate }} <mat-icon>add_circle_outline</mat-icon> 
+            </mat-chip>
+        </mat-chip-list>
+    </div>
+</div>

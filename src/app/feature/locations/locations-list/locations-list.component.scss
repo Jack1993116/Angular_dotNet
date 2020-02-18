@@ -1,0 +1,49 @@
+app-locations-list {
+
+    .enhanced-label {
+        color:#11223e;
+        font-family:"Proxima Nova", sans-serif;
+        font-size:calc(8px + 1vh);
+        font-style:normal;
+        font-weight:bold;
+        padding-right: 10px;
+
+        &.line-center {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .mat-form-field-wrapper {
+        margin: 0;
+        padding: 0;
+    
+        .mat-form-field-infix {
+            border: 0;
+            padding: 1.2rem 0;
+
+        }
+    }
+
+    .holding-container-v1 {
+        .table-container {
+            table {
+                th:last-of-type {
+                    padding-right: 10px;
+                }
+
+                th:first-of-type {
+                    padding-left: 10px;
+                }
+            }
+
+            .pd-r {
+                    padding-right: 7px;
+            }
+        }
+    }
+
+    .header-row {
+        justify-content: space-between;
+    }
+}

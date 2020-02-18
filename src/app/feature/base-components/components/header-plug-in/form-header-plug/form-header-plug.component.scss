@@ -1,0 +1,76 @@
+@import "src/@fuse/scss/fuse"; 
+
+app-form-header-plug {
+    
+    height: 100%;
+    
+    div.outer-row {
+
+        div.innner-row {
+
+            align-items: center;
+            justify-content: space-between;
+
+        .excel-button {
+
+            padding: 0px;
+            border: 0px;
+            
+            img {
+                width: calc(15px + 1.5vmin);
+            }
+        } 
+
+        }
+
+        label {
+            margin: 0px 3px;
+        }
+
+        .enhanced-label {
+            color:#11223e;
+            font-family:"Proxima Nova", sans-serif;
+            font-size:calc(8px + 1vh);
+            font-style:normal;
+            font-weight:bold;
+
+            &.line-center {
+                display: flex;
+                align-items: center;
+            }
+        }
+        
+        .enhanced-label.gold-colored {
+            color:#de990f;
+        }
+
+        .enhanced-label-thin {
+            color:#11223e;
+            font-family:"Proxima Nova", sans-serif;
+            font-size:calc(8px + 1vh);
+            font-style:normal;
+            font-weight:500;
+        }
+
+        .enhanced-label-light {
+            color:#8b8b8b;
+            font-family:"Proxima Nova", sans-serif;
+            font-size:calc(8px + 1vh);
+            font-style:normal;
+            font-weight:500;
+        }
+
+        .dates-status {
+            
+            justify-content: center;
+            
+            .dates-field, .status-field {
+                line-height: 3.5vh;
+                div {
+                    margin: 0px 5px;
+                }
+            }
+        }
+
+    }
+}

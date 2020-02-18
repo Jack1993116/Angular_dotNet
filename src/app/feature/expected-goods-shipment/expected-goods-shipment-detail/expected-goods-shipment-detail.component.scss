@@ -1,0 +1,14 @@
+@import "src/@fuse/scss/fuse";  
+
+app-expected-goods-shipment-detail {
+
+    .mat-tab-group {
+        width: 100%;
+    }
+
+    .mat-datepicker-toggle-default-icon {
+        width: 2.5vh !important;
+        vertical-align: baseline !important;
+    }
+
+}

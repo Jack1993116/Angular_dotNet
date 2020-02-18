@@ -1,0 +1,145 @@
+<form class="BOM-form" fxLayout="row" fxLayoutAlign="start"
+      name="form" [formGroup]="form">
+      
+    <div  fxLayout="row" >
+
+        <mat-form-field  appearance="standard" class="pr-4"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.lineSeq' | translate }}</mat-label>
+            <input matInput formControlName="lineSeq">
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 mat-form-field-check"  [color]="'accent'" floatLabel="always"
+            style="min-width: 70px;">
+            <mat-label>{{ 'DOCS.include' | translate }}</mat-label>
+            <input matInput formControlName="include" [hidden]="true">
+            <input (change)="changeInclude()" type="checkbox" [checked]="bom.include"
+                [disabled]="!formEnableDisable">
+        </mat-form-field>
+
+        <!-- <mat-checkbox class="pr-4" formControlName="include"
+            (change)="changeInclude()">
+            {{ 'DOCS.include' | translate }}
+        </mat-checkbox> -->
+
+        <mat-form-field  appearance="standard" class="pr-4 item"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'IMD.itemCode' | translate }}</mat-label>
+            <input matInput formControlName="childItemCode"
+                (input)="searchItems(itemCodeInput.value)"
+                #itemCodeInput [matAutocomplete]="autoItemCode">
+            <mat-autocomplete #autoItemCode
+                (optionSelected)="selectItem($event)">
+                <mat-option *ngFor="let item of items$ | async"
+                  [value]="item">
+                  {{ item.itemCode }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.bomQty' | translate }}</mat-label>
+            <input matInput formControlName="bomQty">
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.bomToTopQty' | translate }}</mat-label>
+            <input matInput formControlName="bomToTopQty">
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.quantity' | translate }}</mat-label>
+            <input matInput formControlName="quantity"
+                (blur)="setQty()">
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'IMD.unitCode' | translate }}</mat-label>
+            <input matInput formControlName="childUnitCode">
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.baseQty' | translate }}</mat-label>
+            <input matInput formControlName="baseQty">
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'IMD.baseUnitCode' | translate }}</mat-label>
+            <input matInput formControlName="baseUnitCode">
+        </mat-form-field>
+        
+        <mat-form-field  appearance="standard" class="pr-4"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.revisionCode' | translate }}</mat-label>
+            <input matInput formControlName="childRevisionCode">
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.salePrice' | translate }}</mat-label>
+            <input matInput formControlName="salePrice"
+                (blur)="changeSalePrice()">
+            <span matSuffix>{{ selectedCurCode | currency}} &nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.discount' | translate }}</mat-label>
+            <input matInput formControlName="discount">
+            <span matSuffix>% &nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.lineTotal' | translate }}</mat-label>
+            <input matInput formControlName="lineTotal">
+            <span matSuffix>{{ selectedCurCode | currency}} &nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.costPrice' | translate }}</mat-label>
+            <input matInput formControlName="costPrice">
+            <span matSuffix>{{ bom.costCurrency | currency}} &nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.costTotal' | translate }}</mat-label>
+            <input matInput formControlName="costTotal">
+            <span matSuffix>{{ bom.costCurrency | currency}} &nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.localLineTotal' | translate }}</mat-label>
+            <input matInput formControlName="localLineTotal">
+            <span matSuffix>{{ selectedErp.localCurCode | currency}} &nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.localCostTotal' | translate }}</mat-label>
+            <input matInput formControlName="localCostTotal">
+            <span matSuffix>{{ selectedErp.localCurCode | currency}} &nbsp;</span>
+        </mat-form-field>
+
+        <!-- <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.grossProfit' | translate }}</mat-label>
+            <input matInput formControlName="grossProfit"
+                [value]="getGrossProfit() | number: '1.2-2'">
+            <span matSuffix>{{ selectedCurCode | currency}} &nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field  appearance="standard" class="pr-4 field-with-suffix"  [color]="'accent'" floatLabel="always">
+            <mat-label>{{ 'DOCS.grossProfitPer' | translate }}</mat-label>
+            <input matInput formControlName="grossProfitPer" 
+                [value]="getGrossProfitPer()| number: '1.2-2'">
+            <span matSuffix>% &nbsp;</span>
+        </mat-form-field> -->
+
+        <button mat-button
+            [disabled]="form.disabled"
+            (click)="addNewlevel()">
+            <mat-icon>add</mat-icon>
+        </button>
+
+        <button mat-button
+            [disabled]="form.disabled"
+            (click)="delete.next(bom)">
+            <mat-icon class="red-fg">highlight_off</mat-icon>
+        </button>
+
+    </div>
+
+</form>

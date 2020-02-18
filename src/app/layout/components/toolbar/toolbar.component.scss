@@ -1,0 +1,110 @@
+@import "src/@fuse/scss/fuse";
+
+toolbar {
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    z-index: 4;
+
+    &.below {
+        z-index: 2;
+    }
+
+    .mat-toolbar {
+        position: relative;
+        background: inherit !important;
+        color: inherit !important;
+        height: 80px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+
+        .logo-icon {
+            width: 38px;
+        }
+    }
+
+    .whiteDiv {
+        background-color: white;
+    }
+    .user-button,
+    fuse-search-bar,
+    .language-button,
+    .chat-panel-toggle-button,
+    .quick-panel-toggle-button {
+        min-width: 64px;
+        height: 80px;
+
+        @include media-breakpoint('xs') {
+            height: 56px;
+        }
+    }
+
+    .language-button img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+
+    .language-button span .iso {
+        color: grey;
+        font-weight: bold;
+        margin-left: 5px;
+    }
+
+    .user-button span {
+        color: black;
+        font-weight: bold;
+    }
+
+    .user-button span .greySpan {
+        color: grey;
+    }
+
+    .smallImg {
+        width: 340px;
+    }
+
+    .avatarBtn {
+        width: 280px;
+    }
+
+    .language-button {
+        width: 210px;
+    }
+
+    .smallImg img {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        border-radius: 0 !important;
+    }
+
+    .smallImg .mat-icon {
+        color: grey;
+    }
+
+    .navbar-toggle-button {
+        min-width: 56px;
+        height: 56px;
+    }
+
+    .toolbar-separator {
+        height: 80px;
+        width: 2px;
+
+        @include media-breakpoint('xs') {
+            height: 56px;
+        }
+    }
+
+    .short {
+        height: 50px;
+
+        @include media-breakpoint('xs') {
+            height: 36px;
+        }
+    }
+}

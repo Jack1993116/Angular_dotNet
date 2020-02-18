@@ -1,0 +1,13 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+
+// Import app.theme.scss
+@import "app/app.theme";
+@import "~igniteui-angular/lib/core/styles/themes/index";
+// Uncomment the following lines if you want to add a custom palette:
+// $primary: #731963 !default;
+// $secondary: #ce5712 !default;
+// $app-palette: igx-palette($primary, $secondary);
+
+@include igx-core();
+@include igx-theme($default-palette);

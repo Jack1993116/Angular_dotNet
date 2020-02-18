@@ -1,0 +1,25 @@
+<div fxLayout="column">
+    
+    <div fxLayout="row" class="header-row">
+
+        <app-header [title]="'SALE_ORDER_EDIT'" fxFlex="35"
+            [icon]="'shopping_cart'" fxLayout="row"></app-header>
+        
+        <app-form-header-plug fxFlex="60" 
+            [entity]="entity" [showUpload]="true" [showReport]="true"
+            [form]="form"
+            (newFile)="uploadFile($event)"></app-form-header-plug>
+        
+        <div fxFlex="5"></div>
+        
+    </div>
+
+    <div class="save-spinner" *ngIf="isSaving">
+        <mat-spinner *ngIf="isSaving"></mat-spinner>    
+    </div>
+
+    <app-sale-order-detail [saleOrder]="entity" 
+        (saveEvent)="save($event)"
+        (formInit)="setForm($event)"></app-sale-order-detail>
+
+</div>

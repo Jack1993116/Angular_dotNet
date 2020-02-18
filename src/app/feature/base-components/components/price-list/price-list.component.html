@@ -1,0 +1,6 @@
+<mat-form-field appearance="standard">
+    <input matInput formControlName="price"
+        #price (blur)="setPrice(price.value)">
+    <span matSuffix>{{ curCode | currency}} &nbsp;</span>
+    <mat-error>{{ 'DOCS.price' | translate }} {{ 'IS_REQUIURED' | translate }}</mat-error>
+</mat-form-field>

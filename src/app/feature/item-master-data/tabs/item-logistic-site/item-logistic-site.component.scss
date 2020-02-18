@@ -1,0 +1,40 @@
+@import "src/@fuse/scss/fuse";
+@import "../shared";
+
+app-item-logistic-site {
+
+     div.form-tab {
+
+        @extend %tabs-shared;
+        
+        .holding-container {
+
+            width: 100%;
+            position: relative;
+            overflow: auto;
+            
+            .table-container {
+
+               position: relative;
+               max-height: 580px;
+               overflow: auto;
+
+               table {
+
+                  width: 100%;
+               
+               }
+
+               tr.mat-row:hover {
+
+                  background-color: #4fc3f7!important;
+
+               }
+
+         }
+
+      }
+
+   }
+  
+}

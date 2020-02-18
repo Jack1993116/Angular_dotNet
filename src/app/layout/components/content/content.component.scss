@@ -1,0 +1,19 @@
+content {
+
+    background-image: url("assets/images/backgrounds/industry-2633878_1920.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+    display: flex;
+    z-index: 1;
+    flex: 1 0 auto;
+
+    > *:not(router-outlet) {
+        display: flex;
+        flex: 1 0 auto;
+        width: 100%;
+        min-width: 100%;
+    }
+}

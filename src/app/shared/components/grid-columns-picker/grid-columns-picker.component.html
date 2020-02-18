@@ -1,0 +1,17 @@
+<div class="table-settings-button pr-24">
+    <button mat-icon-button (click)=select.open()>        
+        <mat-icon class="accent-fg">settings</mat-icon>
+        {{ 'NAV.SETTINGS' | translate }}
+        <mat-select #select
+            panelClass="panel" disableOptionCentering>
+            <div *ngFor="let column of columnsList">
+                <mat-option>
+                    <mat-checkbox [ngModel]="column.checked"
+                        (change)="changeColumn(column)" > 
+                        {{ column.translatedName }}
+                    </mat-checkbox>
+                </mat-option>
+            </div>
+        </mat-select>
+    </button> 
+</div>

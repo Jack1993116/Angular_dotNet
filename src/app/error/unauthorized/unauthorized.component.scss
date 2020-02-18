@@ -1,0 +1,9 @@
+@import "src/@fuse/scss/fuse";
+@import "../shared";
+
+app-unauthorized {
+
+    #error-401 {
+        @extend %error-shared;
+    }
+}

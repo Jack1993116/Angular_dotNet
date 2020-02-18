@@ -1,0 +1,10 @@
+<mat-form-field appearance="standard">
+    <mat-select formControlName="revisionCode"
+        panelClass="panel" disableOptionCentering 
+        (click)="getRevisionsFromServiceIfNeeded()">
+        <mat-option *ngFor="let revision of itemRevisions$ | async"
+            [value]="revision.revisionCode">
+            {{ revision.revisionCode }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
