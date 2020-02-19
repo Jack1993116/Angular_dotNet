@@ -47,23 +47,23 @@ export class ItemMasterDataListComponent
         }, 2000);
     }
 
-    updatePage(event: number) {
+    updatePage(event: number): void {
         this.getItems(event);
     }
 
-    goFirstPage() {
+    goFirstPage(): void {
         this.paginator.firstPage();
     }
 
-    goPrevPage() {
+    goPrevPage(): void {
         this.getItems(this.paginator.pageIndex - 1);      
     }
 
-    goNextPage() {
+    goNextPage(): void {
         this.getItems(this.paginator.pageIndex + 1);             
     }
 
-    goLastPage() {
+    goLastPage(): void {
         this.paginator.lastPage();
     }
 

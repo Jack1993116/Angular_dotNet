@@ -1,7 +1,10 @@
 <div class = "paginatorDiv">
     <div class = "paginatorLeftSubDiv">
         <span class="paginatorGreyLabel">Showing:</span>
-        <span class="paginatorOrangeLabel">&nbsp;{{pagesize}} {{tableTitle}}</span>
+        <span class="paginatorOrangeLabel">&nbsp;
+            <span *ngIf="pagelength > pagesize; else lengthShow">{{pagesize}}</span>
+            <ng-template #lengthShow><span>{{pagelength}}</span></ng-template>
+            &nbsp;{{tableTitle}}</span>
     </div>
     <div>
         <button class="pageBtn"  (click)="goFirstPage()" [disabled]="!isHasPrevPage">

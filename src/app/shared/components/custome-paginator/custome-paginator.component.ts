@@ -27,7 +27,7 @@ export class CustomePaginatorComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-   
+
     }
 
     updatePage(index: number) {
