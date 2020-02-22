@@ -17,31 +17,13 @@ import { UnitOfMeasureService } from 'app/core/services/unit-of-measure/unit-of-
 
 const DUMMY_DATA: AttachmentL[] = [
     {
-        attachLineID: 1,
-        fileName: 'Attached documentation',
-        fileURL: 'http://fileattachede.com/file.pdf',
-        fileType: 'PDF',
-        createDate: '15/01/2020',
-        comment: 'Some Comment'
-    },
-    {
-        attachLineID: 2,
-        fileName: 'Attached documentation',
-        fileURL: 'http://fileattachede.com/file.pdf',
-        fileType: 'PDF',
-        createDate: '15/01/2020',
-        comment: 'Some Comment'
-    },
-    {
-        attachLineID: 3,
-        fileName: 'Attached documentation',
-        fileURL: 'http://fileattachede.com/file.pdf',
-        fileType: 'PDF',
-        createDate: '15/01/2020',
-        comment: 'Some Comment'
-    },
-
-
+        attachLineID: 0,
+        fileName: 'No file name',
+        fileURL: '#',
+        fileType: 'No type',
+        createDate: '01/01/2020',
+        comment: 'No comment'
+    }
 ];
 
 @Component({
@@ -56,7 +38,7 @@ export class AttachmentComponent implements OnInit {
 
 
   displayedColumns: string[] = ['attachLineID', 'fileName', 'fileURL', 'fileType', 'createDate', 'comment', 'edit', 'delete'];
-  dataSource = DUMMY_DATA;
+  dataSource: AttachmentL[] = [];
   dialogRef: any;
 
     constructor(public attachmentService: AttachmentService, 
@@ -71,6 +53,9 @@ export class AttachmentComponent implements OnInit {
     if (this.attachID){
         this.getItemList();
     }
+    else {
+        this.dataSource = DUMMY_DATA;
+    }       
   }
 
   editAttachLine(item: AttachmentL): void {

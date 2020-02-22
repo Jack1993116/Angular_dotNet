@@ -17,7 +17,8 @@
 }
 
 .file-info {
-  font-size: .85rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 #drop_zone {
@@ -52,4 +53,29 @@ a.disabled {
 .upload-drop-zone.drop {
   color: #222;
   border-color: #222;
+}
+
+.cardDiv {
+    margin-top: 10px; 
+    padding: 14px; 
+    background-color: white; 
+    color: rgba(0, 0, 0, 0.87); 
+    border-bottom: 1px dashed grey;
+}
+
+.greenSaveIcon {
+    margin: 0 5px 0 10px;
+    color: green;
+}
+
+.redCancelIcon {
+    color: red;
+}
+
+.uploadBtnDiv {
+    float: right;
+}
+
+.uploadBtnDiv button {
+    margin-left: 20px;
 }

@@ -1,13 +1,15 @@
-<mat-card style = "margin-top: 10px;">
-    <span class="file-info">{{file.name}}({{file.size | bytes}})</span>
-    <section class="example-section">
-        <mat-progress-bar class="example-margin" [value]="progressPercentage"></mat-progress-bar>
-        <mat-form-field appearance="outline" style = "padding-top: 15px;padding-left: 20px;">
-            <mat-label>  {{ 'COMMENT' | translate }} </mat-label>
-            <input matInput [(ngModel)]="fileComment" >
-        </mat-form-field>
-        <mat-icon class="action" [ngClass]="{'disabled' : isUploading}" (click)="upload()" style="margin-left:5px;">check_circle</mat-icon>
-        <mat-icon class="action" (click)="remove()">cancel</mat-icon>
-    </section>
-    <span class="file-info">{{progressPercentage}}%</span><span> {{loaded | bytes}} of {{total | bytes}}</span>
-</mat-card>
+<div class="cardDiv">
+  
+        <span class="file-info">{{file.name}}&nbsp;({{file.size | bytes}})</span>
+        <section class="example-section">
+            <mat-progress-bar class="example-margin" [value]="progressPercentage"></mat-progress-bar>
+            <mat-form-field appearance="outline" style = "padding-top: 15px;padding-left: 20px;">
+                <mat-label>  {{ 'COMMENT' | translate }} </mat-label>
+                <input matInput [(ngModel)]="fileComment" >
+            </mat-form-field>
+            <mat-icon class="action greenSaveIcon" [ngClass]="{'disabled' : isUploading}" (click)="upload()">check_circle</mat-icon>
+            <mat-icon class="action redCancelIcon" (click)="remove()">cancel</mat-icon>
+        </section>
+        <span class="file-info">{{progressPercentage}}%</span><span> {{loaded | bytes}} of {{total | bytes}}</span>
+    
+</div>

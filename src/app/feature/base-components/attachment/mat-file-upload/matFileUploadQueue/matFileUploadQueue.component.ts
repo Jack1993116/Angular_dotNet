@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
     selector: 'mat-file-upload-queue',
     templateUrl: `matFileUploadQueue.component.html`,
+    styleUrls: ['./../matFileUploadQueue.scss'],
     exportAs: 'matFileUploadQueue',
 })
 export class MatFileUploadQueueComponent implements OnDestroy, AfterViewInit {

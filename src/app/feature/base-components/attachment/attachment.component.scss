@@ -1,9 +1,71 @@
 .upload-drop-zone {
     display: flex;
-    height: 100px;
-    //background-color: #ff1124;
+    background-color: white;
     justify-content: center;
     align-items: center;
-    border-style: dashed;
+    box-shadow: 0 0 3px grey;
     cursor: pointer;
+    color: #11223e;
+    padding: 80px 60px;
+}
+
+.uploadLabel {
+    text-align: center;   
+}
+
+.uploadLabel p {
+    font-weight: 900;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.uploadLabel img {
+    margin-bottom: 10px;
+}
+
+.pt-10 {
+    padding: 15px 3px;
+}
+
+.borderDiv {
+    box-shadow: 0 0 3px grey !important;
+    padding: 45px;
+    background-color: white;
+}
+
+.mat-elevation-z8 {
+    box-shadow: none !important;
+    border-bottom: 1px solid grey;
+}
+
+td {
+    border: 1px solid grey;
+    padding: 0 15px !important;
+}
+
+th {
+    border: 1px solid grey;
+    padding: 0 15px !important;
+}
+
+.noShow {
+    display: none;
+}
+
+.mat-cell button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.primary-fg {
+    line-height: 48px !important;
+}
+
+.red-fg {
+    line-height: 48px !important;
+}
+
+.secondary-text {
+    line-height: 48px !important;
 }

@@ -28,11 +28,12 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from
     @HostListener('change')
     public onChange(): any {
       const files = this.element.nativeElement.files;
+      console.log("Uploading files: ", files);
       this.fileSelected.emit(files);
 
-      files.array.forEach(file => {
-        this._queue.add(file);
-      });
+      Object.keys(files).map( (index) => {
+            this._queue.add(files[index]);
+        });
       this.element.nativeElement.value = '';
     }
 
@@ -41,9 +42,9 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, Output } from
       const files = event.dataTransfer.files;
       this.fileSelected.emit(files);
 
-      files.array.forEach(file => {
-        this._queue.add(file);
-      });
+      Object.keys(files).map( (index) => {
+        this._queue.add(files[index]);
+        });
       event.preventDefault();
       event.stopPropagation();
       this.element.nativeElement.value = '';

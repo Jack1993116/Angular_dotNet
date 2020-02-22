@@ -25,6 +25,7 @@ export class BaseEditCreate<T, S extends GetUpdateCreate<T>> {
         this.route.data
             .subscribe((data: { entity: T }) => {
                 this.entity = data.entity;
+                console.log(this.entity);
             });
     }
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, Inject, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Inject, forwardRef, OnInit } from '@angular/core';
 import { HttpClient, HttpEventType, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MatFileUploadQueueComponent } from '../matFileUploadQueue/matFileUploadQueue.component';
 import { Constants } from '../../../../../constants';
@@ -17,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
     },
     styleUrls: ['./../matFileUploadQueue.scss'],
 })
-export class MatFileUploadComponent {
+export class MatFileUploadComponent implements OnInit{
     private baseApi: string;
 
     public isUploading = false;
@@ -58,7 +58,7 @@ export class MatFileUploadComponent {
     fileAlias = 'file';
 
     @Input()
-    attachID = null;
+    attachID : any;
 
     @Input()
     get file(): any {
@@ -88,6 +88,12 @@ export class MatFileUploadComponent {
     private _id: number;
     private fileUploadSubscription: any;
     public fileComment = '';
+
+    ngOnInit() {
+        if(!this.attachID) {
+            this.attachID = 0;
+        }
+    }
 
     private ERPlogisticSiteQuery(): string {
         const ERPCompanyIds = this.erpLogisticSiteService.getCheckedERP();
