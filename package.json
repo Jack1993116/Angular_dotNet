@@ -60,7 +60,7 @@
     "igniteui-angular": "8.2.10",
     "jszip": "3.2.2",
     "lodash": "4.17.15",
-    "moment": "2.24.0",
+    "moment": "2.29.2",
     "ng-material-treetable": "0.5.5",
     "ng2-charts": "2.3.0",
     "ngrx-store-freeze": "0.2.4",
